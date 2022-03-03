@@ -4,9 +4,6 @@ import {useState} from 'react';
 import {TextInput, View} from 'react-native';
 
 
-
-
-
 const SearchBox = (props) =>{
   const [searchString, setSearchString] = useState('');
   const searchPlaceholder = props.placeholder;

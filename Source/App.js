@@ -1,33 +1,23 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import SearchScreen from './Screens/SearchScreen';
+import TitleScreen from './Screens/TitleScreen';
+import MainScreen from './Screens/MainScreen';
 
-
-
-
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const App = () => {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Test" component={SearchScreen} />
-      </Tab.Navigator>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="MainScreen" component={MainScreen} />
+          <Stack.Screen name="TitleScreen" component={TitleScreen} />
+        </Stack.Navigator>
     </NavigationContainer>
-  );
-};
+  )
+}
 
 export default App;

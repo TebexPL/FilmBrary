@@ -6,7 +6,7 @@ import SearchBox from './Components/SearchBox'
 import SingleResult from './Components/SingleResult'
 
 
-const SearchScreen = () =>{
+const SearchScreen = (props) =>{
   const [results, setResults] = useState([]);
 
   const fetchResults = async (event) => {
@@ -20,8 +20,8 @@ const SearchScreen = () =>{
     }
   }
 
-  const showDetails = (args) => {
-    console.log(args);
+  const gotoDetails = (titleID) => {
+    props.navigation.navigate('TitleScreen', {TitleID: titleID});
   }
 
   return (
@@ -32,7 +32,7 @@ const SearchScreen = () =>{
       data={results}
       renderItem={
         ({ item }) =>
-          (<SingleResult data={item} onPress={showDetails}/>)}
+          (<SingleResult data={item} onPress={gotoDetails}/>)}
       keyExtractor={item => item.id}
     />
 
