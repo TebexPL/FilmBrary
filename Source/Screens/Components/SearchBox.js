@@ -6,13 +6,11 @@ import {TextInput, View} from 'react-native';
 
 const SearchBox = (props) =>{
   const [searchString, setSearchString] = useState('');
-  const searchPlaceholder = props.placeholder;
-
 
   return (
 
     <View>
-      <TextInput placeholder={searchPlaceholder} value={searchString} onChangeText={setSearchString} onSubmitEditing={props.onSubmit}/>
+      <TextInput placeholder={props.placeholder} value={searchString} onChangeText={setSearchString} onSubmitEditing={props.onSubmit}/>
     </View>
   )
 

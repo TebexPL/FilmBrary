@@ -21,7 +21,7 @@ const SearchScreen = (props) =>{
   }
 
   const gotoDetails = (titleID) => {
-    props.navigation.navigate('TitleScreen', {TitleID: titleID});
+    props.navigation.navigate('DetailsScreen', {TitleID: titleID});
   }
 
   return (
