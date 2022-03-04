@@ -17,10 +17,11 @@ const MainScreen = () => {
       screenOptions={({ route }) => ({
         tabBarShowLabel: false,
         tabBarOptions: {showIcon : true},
-        tabBarStyle:{backgroundColor: '#3e3b39',
+        tabBarStyle:{ position:'absolute',
+                      overflow:'hidden',
+                      backgroundColor: '#3e3b39',
                       borderTopLeftRadius: 15,
                       borderTopRightRadius: 15,
-                      overflow: 'hidden'
                       },
         tabBarIcon: ({focused, color, size}) => {
           return <TabItem

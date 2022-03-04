@@ -1,8 +1,9 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 
-import SingleResult from './Components/SingleResult'
+import SingleResult from './Components/SingleResult';
+import HeaderLine from './Components/HeaderLine';
 
 
 const CategoryScreen = (props) =>{
@@ -27,23 +28,26 @@ const CategoryScreen = (props) =>{
   }
 
   return (
-
-    <FlatList
-      /*ListHeaderComponent=
-        {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}*/
-      data={results}
-      renderItem={
-        ({ item }) =>
-          (<SingleResult data={item} onPress={gotoDetails}/>)}
-      keyExtractor={item => item.id}
-    />
-
-
-
-
+    <View>
+      <HeaderLine onPress={() => {props.navigation.goBack()}}/>
+      <FlatList
+        style={styles.back}
+        /*ListHeaderComponent=
+          {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}*/
+        data={results}
+        renderItem={
+          ({ item }) =>
+            (<SingleResult data={item} onPress={gotoDetails}/>)}
+        keyExtractor={item => item.id}
+      />
+    </View>
   )
-
-
 }
+
+const styles = StyleSheet.create({
+  back : {
+    backgroundColor : '#262625'
+  }
+})
 
 export default CategoryScreen;

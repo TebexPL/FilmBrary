@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 
 import SingleResult from './Components/SingleResult'
 
@@ -28,6 +28,7 @@ const Best250Movies = (props) =>{
   return (
 
     <FlatList
+      style={styles.back}
       /*ListHeaderComponent=
         {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}*/
       data={results}
@@ -36,13 +37,13 @@ const Best250Movies = (props) =>{
           (<SingleResult data={item} onPress={gotoDetails}/>)}
       keyExtractor={item => item.id}
     />
-
-
-
-
   )
-
-
 }
+
+const styles = StyleSheet.create({
+  back: {
+    backgroundColor : '#262625'
+  }
+})
 
 export default Best250Movies;

@@ -10,7 +10,7 @@ const checkIcon = (name) => {
       link = 'https://cdn-icons.flaticon.com/png/512/498/premium/498682.png?token=exp=1646334579~hmac=50fdfa27ad7792b78badaaad1a01bf97';
       break;
     case 'Best 250 Movies':
-      link = 'https://cdn-icons-png.flaticon.com/512/633/633832.png';
+      link = 'https://cdn-icons-png.flaticon.com/512/633/633600.png';
       break;
     case 'Best 250 TV Series':
       link= 'https://cdn-icons.flaticon.com/png/512/2758/premium/2758340.png?token=exp=1646334812~hmac=e5293fbdad86f542779ca9eedbd1cd43';

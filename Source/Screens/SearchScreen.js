@@ -26,6 +26,7 @@ const SearchScreen = (props) =>{
 
   return (
     <FlatList
+      style={styles.back}
       ListHeaderComponent=
         {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}
       data={results}
@@ -39,7 +40,9 @@ const SearchScreen = (props) =>{
 }
 
 const styles = StyleSheet.create({
-  
+  back: {
+    backgroundColor : '#262625'
+  }
 })
 
 export default SearchScreen;

@@ -39,7 +39,6 @@ const CategoriesScreen = (props) =>{
   }
 
   return (
-
     <FlatList
       /*ListHeaderComponent=
         {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}*/
@@ -49,13 +48,7 @@ const CategoriesScreen = (props) =>{
           (<CategoryItem data={item} onPress={gotoCategory}/>)}
       keyExtractor={item => item.queryStr}
     />
-
-
-
-
   )
-
-
 }
 
 export default CategoriesScreen;
