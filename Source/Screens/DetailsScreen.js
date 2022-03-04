@@ -42,7 +42,7 @@ const DetailsScreen = (props) =>{
 const styles = StyleSheet.create({
   back : {
     backgroundColor : '#262625',
-    height:700
+    height:'100%'
   },
   upperBox : {
     flexDirection : 'row'

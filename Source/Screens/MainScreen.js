@@ -15,6 +15,7 @@ const MainScreen = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        headerShown:false,
         tabBarShowLabel: false,
         tabBarOptions: {showIcon : true},
         tabBarStyle:{ position:'absolute',

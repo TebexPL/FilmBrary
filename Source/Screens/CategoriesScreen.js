@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet, ScrollView, View} from 'react-native';
 
 import CategoryItem from './Components/CategoryItem'
 
@@ -39,16 +39,36 @@ const CategoriesScreen = (props) =>{
   }
 
   return (
-    <FlatList
-      /*ListHeaderComponent=
-        {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}*/
-      data={categories}
-      renderItem={
-        ({ item }) =>
-          (<CategoryItem data={item} onPress={gotoCategory}/>)}
-      keyExtractor={item => item.queryStr}
-    />
+    <View style={styles.back}>
+      <FlatList
+        style={styles.list}
+        /*ListHeaderComponent=
+          {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}*/
+        data={categories}
+        renderItem={
+          ({ item }) =>
+            (<CategoryItem data={item} onPress={gotoCategory}/>)}
+        keyExtractor={item => item.queryStr}
+      />
+    </View>
+
   )
 }
+
+const styles = StyleSheet.create({
+  back : {
+    backgroundColor:'#262625',
+    height: '100%'
+  },
+  list : {
+    backgroundColor : '#3e3b39',
+    color: '#d4f1f4',
+    paddingLeft: 15,
+    paddingTop: 15,
+    margin: 25,
+    borderRadius: 15,
+    
+  }
+});
 
 export default CategoriesScreen;
