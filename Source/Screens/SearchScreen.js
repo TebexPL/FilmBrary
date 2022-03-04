@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 
 import SearchBox from './Components/SearchBox'
 import SingleResult from './Components/SingleResult'
@@ -25,7 +25,6 @@ const SearchScreen = (props) =>{
   }
 
   return (
-
     <FlatList
       ListHeaderComponent=
         {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}
@@ -36,12 +35,11 @@ const SearchScreen = (props) =>{
       keyExtractor={item => item.id}
     />
 
-
-
-
   )
-
-
 }
+
+const styles = StyleSheet.create({
+  
+})
 
 export default SearchScreen;

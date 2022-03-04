@@ -1,20 +1,43 @@
 import React from 'react';
 import {useState} from 'react';
-
-import {TextInput, View} from 'react-native';
+import {TextInput, View, StyleSheet, Image} from 'react-native';
 
 
 const SearchBox = (props) =>{
   const [searchString, setSearchString] = useState('');
 
   return (
-
-    <View>
-      <TextInput placeholder={props.placeholder} value={searchString} onChangeText={setSearchString} onSubmitEditing={props.onSubmit}/>
+    <View style={styles.box}>
+      <Image style={styles.icon} source={{uri: 'https://cdn-icons-png.flaticon.com/512/49/49116.png'}}/>
+      <TextInput placeholder={props.placeholder} placeholderTextColor='#68999e' value={searchString} 
+                  onChangeText={setSearchString} onSubmitEditing={props.onSubmit} 
+                  style={styles.text}/>
     </View>
   )
-
-
 }
+
+const styles = StyleSheet.create({
+  box : {
+    backgroundColor:'#262625',
+    flexDirection:'row',
+    alignItems: 'center',
+    borderStyle:'solid',
+    borderWidth: 20,
+    borderColor: '#d4f1f4',
+    borderRadius: 20
+  },  
+  icon : {
+    width : 25,
+    height : 25,
+    padding: 5,
+    margin: 5,
+    tintColor: '#d4f1f4'
+  },
+  text:{
+    padding: 5,
+    margin: 5,
+    color: '#d4f1f4'
+  }
+})
 
 export default SearchBox;
