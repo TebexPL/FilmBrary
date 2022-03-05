@@ -35,13 +35,13 @@ const categories =[
 
 const CategoriesScreen = (props) =>{
 
-  const gotoCategory = (queryStr) => {
-    props.navigation.navigate('CategoryScreen', {QueryStr: queryStr});
+  const gotoCategory = (category) => {
+    props.navigation.navigate('CategoryScreen', {Category: category});
   }
 
   return (
     <View style={styles.back}>
-      <HeaderLine onPress={() => {props.navigation.goBack()}}/>
+      <HeaderLine navigation={props.navigation} title={'Categories'}/>
       <FlatList
         style={styles.list}
         /*ListHeaderComponent=
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     margin: 25,
     borderRadius: 15,
-    
+
   }
 });
 

@@ -8,9 +8,9 @@ const SearchBox = (props) =>{
 
   return (
     <View style={styles.box}>
-      <Image style={styles.icon} source={{uri: 'https://cdn-icons-png.flaticon.com/512/49/49116.png'}}/>
-      <TextInput placeholder={props.placeholder} placeholderTextColor='#68999e' value={searchString} 
-                  onChangeText={setSearchString} onSubmitEditing={props.onSubmit} 
+      <Image style={styles.icon} source={require('./assets/search.png')}/>
+      <TextInput placeholder={props.placeholder} placeholderTextColor='#68999e' value={searchString}
+                  onChangeText={setSearchString} onSubmitEditing={props.onSubmit}
                   style={styles.text}/>
     </View>
   )
@@ -22,10 +22,11 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems: 'center',
     borderStyle:'solid',
-    borderWidth: 20,
+    borderWidth: 3,
     borderColor: '#d4f1f4',
-    borderRadius: 20
-  },  
+    borderRadius: 20,
+    margin: 10,
+  },
   icon : {
     width : 25,
     height : 25,

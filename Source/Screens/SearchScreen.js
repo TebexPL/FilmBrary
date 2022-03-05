@@ -27,7 +27,7 @@ const SearchScreen = (props) =>{
 
   return (
     <>
-    <HeaderLine onPress={() => {props.navigation.goBack()}}/>
+    <HeaderLine navigation={props.navigation} title={'Search'}/>
     <FlatList
       style={styles.back}
       ListHeaderComponent=

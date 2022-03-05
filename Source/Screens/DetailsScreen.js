@@ -24,7 +24,7 @@ const DetailsScreen = (props) =>{
 
   return (
     <View style={styles.back}>
-      <HeaderLine onPress={() => {props.navigation.goBack()}}/>
+      <HeaderLine navigation={props.navigation} title={'Details'}/>
         <ScrollView >
           <View style={styles.upperBox}>
             <Image style={styles.img} source={{uri : data.image}}/>

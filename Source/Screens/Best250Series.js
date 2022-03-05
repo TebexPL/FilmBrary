@@ -28,7 +28,7 @@ const Best250Series = (props) =>{
 
   return (
     <>
-      <HeaderLine onPress={() => {props.navigation.goBack()}}/>
+      <HeaderLine navigation={props.navigation} title={'Best TV Series'}/>
       <FlatList
         style={styles.back}
         /*ListHeaderComponent=

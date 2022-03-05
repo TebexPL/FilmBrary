@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -12,6 +12,11 @@ const Stack = createNativeStackNavigator();
 const App = () => {
 
   return (
+    <>
+    <StatusBar
+        animated={true}
+        backgroundColor='#262625'
+        />
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false, animation:'slide_from_bottom'}}>
           <Stack.Screen name="MainScreen" component={MainScreen} />
@@ -19,6 +24,7 @@ const App = () => {
           <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
         </Stack.Navigator>
     </NavigationContainer>
+    </>
   )
 }
 

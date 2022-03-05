@@ -28,7 +28,7 @@ const Best250Movies = (props) =>{
 
   return (
     <>
-      <HeaderLine onPress={() => {props.navigation.goBack()}}/>
+      <HeaderLine navigation={props.navigation} title={'Best Movies'}/>
       <FlatList
         style={styles.back}
         /*ListHeaderComponent=

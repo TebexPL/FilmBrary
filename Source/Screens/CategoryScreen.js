@@ -13,9 +13,9 @@ const CategoryScreen = (props) =>{
   }, []);
 
   const fetchData = async () => {
-    const queryString = props.route.params.QueryStr;
+    const category = props.route.params.Category;
       try{
-        const result = await (await fetch('https://imdb-api.com/en/API/AdvancedSearch/k_m73z3hkh?genres='+queryString)).json();
+        const result = await (await fetch('https://imdb-api.com/en/API/AdvancedSearch/k_m73z3hkh?genres='+category.queryStr)).json();
         setResults(result.results);
       }
       catch(error){
@@ -28,8 +28,8 @@ const CategoryScreen = (props) =>{
   }
 
   return (
-    <View>
-      <HeaderLine onPress={() => {props.navigation.goBack()}}/>
+    <View style={styles.container}>
+      <HeaderLine navigation={props.navigation} title={props.route.params.Category.name}/>
       <FlatList
         style={styles.back}
         /*ListHeaderComponent=
@@ -45,9 +45,11 @@ const CategoryScreen = (props) =>{
 }
 
 const styles = StyleSheet.create({
-  back : {
-    backgroundColor : '#262625'
-  }
+  container:{
+    flex:1,
+    backgroundColor:'#262625'
+  },
+
 })
 
 export default CategoryScreen;
