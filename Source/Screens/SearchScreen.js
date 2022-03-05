@@ -3,7 +3,8 @@ import {useState} from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 
 import SearchBox from './Components/SearchBox'
-import SingleResult from './Components/SingleResult'
+import SingleResult from './Components/SingleResult';
+import HeaderLine from './Components/HeaderLine';
 
 
 const SearchScreen = (props) =>{
@@ -25,6 +26,8 @@ const SearchScreen = (props) =>{
   }
 
   return (
+    <>
+    <HeaderLine onPress={() => {props.navigation.goBack()}}/>
     <FlatList
       style={styles.back}
       ListHeaderComponent=
@@ -35,6 +38,7 @@ const SearchScreen = (props) =>{
           (<SingleResult data={item} onPress={gotoDetails}/>)}
       keyExtractor={item => item.id}
     />
+    </>
 
   )
 }

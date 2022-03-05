@@ -1,7 +1,8 @@
 import React from 'react';
 import {FlatList, StyleSheet, ScrollView, View} from 'react-native';
 
-import CategoryItem from './Components/CategoryItem'
+import CategoryItem from './Components/CategoryItem';
+import HeaderLine from './Components/HeaderLine';
 
 const categories =[
   {name:'Action', queryStr: 'action'},
@@ -40,6 +41,7 @@ const CategoriesScreen = (props) =>{
 
   return (
     <View style={styles.back}>
+      <HeaderLine onPress={() => {props.navigation.goBack()}}/>
       <FlatList
         style={styles.list}
         /*ListHeaderComponent=
@@ -58,13 +60,14 @@ const CategoriesScreen = (props) =>{
 const styles = StyleSheet.create({
   back : {
     backgroundColor:'#262625',
-    height: '100%'
+    height: '95%'
   },
   list : {
     backgroundColor : '#3e3b39',
     color: '#d4f1f4',
     paddingLeft: 15,
     paddingTop: 15,
+    paddingBottom: 15,
     margin: 25,
     borderRadius: 15,
     

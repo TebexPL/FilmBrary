@@ -2,7 +2,8 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 
-import SingleResult from './Components/SingleResult'
+import SingleResult from './Components/SingleResult';
+import HeaderLine from './Components/HeaderLine';
 
 
 const Best250Movies = (props) =>{
@@ -26,17 +27,19 @@ const Best250Movies = (props) =>{
   }
 
   return (
-
-    <FlatList
-      style={styles.back}
-      /*ListHeaderComponent=
-        {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}*/
-      data={results}
-      renderItem={
-        ({ item }) =>
-          (<SingleResult data={item} onPress={gotoDetails}/>)}
-      keyExtractor={item => item.id}
-    />
+    <>
+      <HeaderLine onPress={() => {props.navigation.goBack()}}/>
+      <FlatList
+        style={styles.back}
+        /*ListHeaderComponent=
+          {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}*/
+        data={results}
+        renderItem={
+          ({ item }) =>
+            (<SingleResult data={item} onPress={gotoDetails}/>)}
+        keyExtractor={item => item.id}
+      />
+    </>
   )
 }
 
