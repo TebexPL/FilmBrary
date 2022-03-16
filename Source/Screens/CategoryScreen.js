@@ -4,6 +4,7 @@ import {FlatList, StyleSheet, View} from 'react-native';
 
 import SingleResult from './Components/SingleResult';
 import HeaderLine from './Components/HeaderLine';
+import ApiKey from './ApiKey';
 
 
 const CategoryScreen = (props) =>{
@@ -15,7 +16,7 @@ const CategoryScreen = (props) =>{
   const fetchData = async () => {
     const category = props.route.params.Category;
       try{
-        const result = await (await fetch('https://imdb-api.com/en/API/AdvancedSearch/k_m73z3hkh?genres='+category.queryStr)).json();
+        const result = await (await fetch('https://imdb-api.com/en/API/AdvancedSearch/'+ApiKey+'?genres='+category.queryStr)).json();
         setResults(result.results);
       }
       catch(error){
@@ -23,8 +24,8 @@ const CategoryScreen = (props) =>{
       }
   }
 
-  const gotoDetails = (titleID) => {
-    props.navigation.navigate('DetailsScreen', {TitleID: titleID});
+  const gotoDetails = (title) => {
+    props.navigation.navigate('DetailsScreen', {Title: title});
   }
 
   return (

@@ -2,6 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
 
+import HomeScreen from './HomeScreen';
 import CategoriesScreen from './CategoriesScreen';
 import SearchScreen from './SearchScreen';
 import Best250Movies from './Best250Movies';
@@ -31,14 +32,17 @@ const MainScreen = () => {
                   color={color}
                   size={size} />
         }  })}>
-        <Tab.Screen name="Categories" 
+        <Tab.Screen name="HomeScreen"
+                    component={HomeScreen}
+                   />
+        <Tab.Screen name="Categories"
                     component={CategoriesScreen}
                    />
-        <Tab.Screen name="Best 250 Movies" 
+        <Tab.Screen name="Best 250 Movies"
                     component={Best250Movies} />
-        <Tab.Screen name="Best 250 TV Series" 
+        <Tab.Screen name="Best 250 TV Series"
                     component={Best250Series} />
-        <Tab.Screen name="Search" 
+        <Tab.Screen name="Search"
                     component={SearchScreen} />
       </Tab.Navigator>
   )

@@ -1,6 +1,5 @@
 import React from 'react';
 import {Text, View, Image, StyleSheet} from 'react-native';
-import { parseComponentStack } from 'react-native/Libraries/LogBox/Data/parseLogBoxLog';
 
 const image = {
   'Categories': require('./assets/reel.png'),

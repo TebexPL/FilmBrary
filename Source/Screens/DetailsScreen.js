@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
 
 import HeaderLine from './Components/HeaderLine';
+import ApiKey from './ApiKey';
 
 const DetailsScreen = (props) =>{
   const [data, setData] = useState({})
@@ -12,9 +13,9 @@ const DetailsScreen = (props) =>{
   }, []);
 
   const fetchData = async () => {
-      const queryString = props.route.params.TitleID;
+      const queryString = props.route.params.Title.id;
       try{
-        const result = await (await fetch('https://imdb-api.com/en/API/Title/k_m73z3hkh/'+queryString)).json();
+        const result = await (await fetch('https://imdb-api.com/en/API/Title/'+ApiKey+'/'+queryString)).json();
         setData(result);
       }
       catch(error){
@@ -27,7 +28,7 @@ const DetailsScreen = (props) =>{
       <HeaderLine navigation={props.navigation} title={'Details'}/>
         <ScrollView >
           <View style={styles.upperBox}>
-            <Image style={styles.img} source={{uri : data.image}}/>
+            <Image style={styles.img} source={{uri: data.image=="https://imdb-api.com/images/original/nopicture.jpg"?props.route.params.Title.image:data.image}}/>
             <Text style={styles.rating}>Rating: {data.imDbRating}</Text>
           </View>
           <Text style={styles.title}>{data.fullTitle}</Text>

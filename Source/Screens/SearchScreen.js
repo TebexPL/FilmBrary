@@ -5,6 +5,7 @@ import {FlatList, StyleSheet} from 'react-native';
 import SearchBox from './Components/SearchBox'
 import SingleResult from './Components/SingleResult';
 import HeaderLine from './Components/HeaderLine';
+import ApiKey from './ApiKey';
 
 
 const SearchScreen = (props) =>{
@@ -13,7 +14,7 @@ const SearchScreen = (props) =>{
   const fetchResults = async (event) => {
     const queryString = event.nativeEvent.text;
     try{
-      const result = await (await fetch('https://imdb-api.com/en/API/SearchTitle/k_m73z3hkh/'+queryString)).json();
+      const result = await (await fetch('https://imdb-api.com/en/API/SearchTitle/'+ApiKey+'/'+queryString)).json();
       setResults(result.results);
     }
     catch(error){
@@ -21,8 +22,8 @@ const SearchScreen = (props) =>{
     }
   }
 
-  const gotoDetails = (titleID) => {
-    props.navigation.navigate('DetailsScreen', {TitleID: titleID});
+  const gotoDetails = (title) => {
+    props.navigation.navigate('DetailsScreen', {Title: title});
   }
 
   return (

@@ -4,6 +4,7 @@ import {FlatList, StyleSheet} from 'react-native';
 
 import SingleResult from './Components/SingleResult';
 import HeaderLine from './Components/HeaderLine';
+import ApiKey from './ApiKey';
 
 
 const Best250Movies = (props) =>{
@@ -14,7 +15,7 @@ const Best250Movies = (props) =>{
 
   const fetchData = async () => {
       try{
-        const result = await (await fetch('https://imdb-api.com/en/API/Top250Movies/k_m73z3hkh')).json();
+        const result = await (await fetch('https://imdb-api.com/en/API/Top250Movies/'+ApiKey)).json();
         setResults(result.items);
       }
       catch(error){
@@ -22,8 +23,8 @@ const Best250Movies = (props) =>{
       }
   }
 
-  const gotoDetails = (titleID) => {
-    props.navigation.navigate('DetailsScreen', {TitleID: titleID});
+  const gotoDetails = (title) => {
+    props.navigation.navigate('DetailsScreen', {Title: title});
   }
 
   return (

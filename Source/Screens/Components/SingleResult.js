@@ -5,7 +5,7 @@ import {TouchableOpacity, Text, Image, StyleSheet, View} from 'react-native';
 const SingleResult = (props) =>{
 
   return (
-    <TouchableOpacity style={styles.back} onPress={() => props.onPress(props.data.id)}>
+    <TouchableOpacity style={styles.back} onPress={() => props.onPress(props.data)}>
       <Image style={styles.img} source={{uri: props.data.image}} />
       <Text style={styles.text}>{props.data.title}</Text>
     </TouchableOpacity>
@@ -18,8 +18,6 @@ const styles = StyleSheet.create({
     alignItems :'center',
     borderBottomColor: '#3e3b39',
     borderBottomWidth: 5,
-    borderBottomLeftRadius:20,
-    borderBottomRightRadius: 20
   },
   img :{
     height: 135,
