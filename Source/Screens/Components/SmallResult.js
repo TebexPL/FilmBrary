@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
     flexDirection : 'column',
     alignItems :'center',
     backgroundColor:  '#161615',
-    margin: 5
+    padding: 5
   },
   img :{
-    height: 225,
-    width: 150,
+    height: 195,
+    width: 130,
     margin: 10
   },
   text :{

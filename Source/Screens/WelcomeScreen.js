@@ -52,11 +52,11 @@ const WelcomeScreen = (props) =>{
       </View>
 
       <View style={styles.title}>
-        <Text style={styles.description}>Example welcome text</Text>
+        <Text style={styles.description}>By clicking the button below you agree to Terms Of Service and IMDB API policy</Text>
       </View>
       <View style={styles.title}>
         <TouchableOpacity style={styles.confirmButton} onPress={confirm}>
-          <Text style={styles.buttonText}>Let's go!</Text>
+          <Text style={styles.buttonText}>Let's move it!</Text>
         </TouchableOpacity>
       </View>
 
@@ -74,6 +74,11 @@ const styles = StyleSheet.create({
   },
   description:{
     color: '#d4f1f4',
+    textAlign: 'justify',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 40,
+    padding:10
   },
   title:{
       flex:1,
@@ -85,16 +90,18 @@ const styles = StyleSheet.create({
       fontSize: 40,
   },
   confirmButton:{
-      width: 150,
+      width: 250,
       height: 75,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#3e3b39',
+      backgroundColor: '#d4f1f4',
       color: '#d4f1f4',
+      borderRadius: 20
   },
   buttonText:{
-    color: '#d4f1f4',
-    fontSize:25
+    color: '#262625',
+    fontSize:25,
+    fontWeight: 'bold'
   }
 })
 
