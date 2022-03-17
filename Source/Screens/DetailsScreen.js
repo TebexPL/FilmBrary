@@ -1,8 +1,10 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, Image, StyleSheet, ScrollView, FlatList} from 'react-native';
 
 import HeaderLine from './Components/HeaderLine';
+import ActorBox from './Components/ActorBox';
+import SmallResult from './Components/SmallResult';
 import ApiKey from './ApiKey';
 
 const DetailsScreen = (props) =>{
@@ -16,6 +18,18 @@ const DetailsScreen = (props) =>{
       const queryString = props.route.params.Title.id;
       try{
         const result = await (await fetch('https://imdb-api.com/en/API/Title/'+ApiKey+'/'+queryString)).json();
+
+        if(result.imDbRating != null){
+          result.ratingStars='';
+          for(let i=0; i<Math.round(result.imDbRating/2.0); i++)
+            result.ratingStars+='★';
+          while(result.ratingStars.length<5)
+            result.ratingStars+='☆';
+        }
+
+
+
+
         setData(result);
       }
       catch(error){
@@ -29,12 +43,44 @@ const DetailsScreen = (props) =>{
         <ScrollView >
           <View style={styles.upperBox}>
             <Image style={styles.img} source={{uri: data.image=="https://imdb-api.com/images/original/nopicture.jpg"?props.route.params.Title.image:data.image}}/>
-            <Text style={styles.rating}>Rating: {data.imDbRating}</Text>
+            <View style={{flex:1, justifyContent:'center'}}>
+              <Text style={styles.title}>{data.fullTitle}</Text>
+              {data.imDbRating!=null
+                ?
+                (<>
+                  <Text style={styles.rating}>{data.ratingStars}</Text>
+                  <Text style={styles.ratingStr}>({data.imDbRating}/10, {data.imDbRatingVotes} votes)</Text>
+                 </>
+                )
+                :
+                (<></>)
+
+
+            }
+            </View>
           </View>
-          <Text style={styles.title}>{data.fullTitle}</Text>
-          <Text style={styles.keywords}>Keywords: {data.keywords}</Text>
           <Text style={styles.plot}>{data.plot}</Text>
-          <View style={styles.marginBox}></View>
+          <Text style={styles.subTitle}>Cast:</Text>
+          <FlatList
+            data={data.actorList}
+            horizontal={true}
+            renderItem={
+              ({ item }) =>
+                (<ActorBox data={item} />)}
+            keyExtractor={item => item.id}
+            />
+
+            <Text style={styles.subTitle}>See also:</Text>
+            <FlatList
+              data={data.similars}
+              horizontal={true}
+              renderItem={
+                ({ item }) =>
+                  (<SmallResult data={item} />)}
+              keyExtractor={item => item.id}
+              />
+
+
         </ScrollView>
     </View>
   )
@@ -45,24 +91,38 @@ const styles = StyleSheet.create({
     backgroundColor : '#262625',
     height:'100%'
   },
+  subTitle: {
+      color: '#d4f1f4',
+      fontSize: 25,
+      margin: 20
+  },
   upperBox : {
     flexDirection : 'row'
   },
   img : {
-    height: 360,
-    width: 240,
+    height: 300,
+    width: 180,
     margin: 15,
   },
   title : {
     color: '#d4f1f4',
     fontWeight: 'bold',
-    margin: 15,
+    margin: 5,
+    marginTop:30,
     textAlign: 'center',
-    fontSize: 25
+    fontSize: 30
   },
   rating : {
-    color: '#68999e',
-    margin: 10
+    color: '#d4f1f4',
+    margin: 10,
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  ratingStr : {
+    color: '#d4f1f4',
+    margin: 10,
+    fontSize: 15,
+    textAlign: 'center',
   },
   keywords : {
     color: '#68999e',
@@ -74,8 +134,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#3e3b39',
     borderRadius: 15,
     textAlign:'justify',
+    fontSize: 15,
     padding: 15,
-    margin: 15
+    margin: 10
   },
   marginBox : {
     marginBottom : 69

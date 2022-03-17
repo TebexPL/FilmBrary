@@ -14,7 +14,12 @@ const WelcomeScreen = (props) =>{
     try{
       const value = await AsyncStorage.getItem('@FirstTime');
       if (value === "false") {
+
+
+        //Uncomment this
         //props.navigation.replace('MainScreen', {});
+
+        //Remove this
         setFirstTime(true);
       }
       else

@@ -2,9 +2,10 @@ import React from 'react';
 import {Text, View, Image, StyleSheet} from 'react-native';
 
 const image = {
-  'Categories': require('./assets/reel.png'),
-  'Best 250 Movies': require('./assets/movie.png'),
-  'Best 250 TV Series': require('./assets/soap.png'),
+  'Home': require('./assets/home.png'),
+  'Categories': require('./assets/movie.png'),
+  'Best 250 Movies': require('./assets/reel.png'),
+  'Best 250 TV Series': require('./assets/tv.png'),
   'Search': require('./assets/search.png')
 }
 

@@ -32,7 +32,7 @@ const MainScreen = () => {
                   color={color}
                   size={size} />
         }  })}>
-        <Tab.Screen name="HomeScreen"
+        <Tab.Screen name="Home"
                     component={HomeScreen}
                    />
         <Tab.Screen name="Categories"
