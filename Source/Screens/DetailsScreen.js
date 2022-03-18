@@ -1,88 +1,107 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {View, Text, Image, StyleSheet, ScrollView, FlatList} from 'react-native';
+import {View, Text, Image, StyleSheet, ScrollView, FlatList, TouchableOpacity} from 'react-native';
 
 import HeaderLine from './Components/HeaderLine';
 import ActorBox from './Components/ActorBox';
+import SeasonsBox from './Components/SeasonsBox';
 import SmallResult from './Components/SmallResult';
-import ApiKey from './ApiKey';
+import Loading from './Components/Loading';
+import Error from './Components/Error';
+import {FetchData} from './Common/Common.js';
 
 const DetailsScreen = (props) =>{
-  const [data, setData] = useState({})
+  const [data, setData] = useState(undefined)
+  useEffect(()=>{fetchData()}, []);
 
-  useEffect(() => {
-    fetchData()
-  }, []);
-
-  const fetchData = async () => {
-      const queryString = props.route.params.Title.id;
-      try{
-        const result = await (await fetch('https://imdb-api.com/en/API/Title/'+ApiKey+'/'+queryString)).json();
-
-        if(result.imDbRating != null){
-          result.ratingStars='';
-          for(let i=0; i<Math.round(result.imDbRating/2.0); i++)
-            result.ratingStars+='★';
-          while(result.ratingStars.length<5)
-            result.ratingStars+='☆';
-        }
-
-
-
-
-        setData(result);
+  const fetchData = async () =>{
+    const result = await FetchData('Title', '/'+props.route.params.Title.id);
+    if(result===null)
+      setData(null)
+    else{
+      if(result.imDbRating != null){
+        result.ratingStars='';
+        for(let i=0; i<Math.round(result.imDbRating/2.0); i++)
+          result.ratingStars+='★';
+        while(result.ratingStars.length<5)
+          result.ratingStars+='☆';
       }
-      catch(error){
-        console.error(error);
-      }
+      setData(result);
+    }
   }
 
+
+  if(data===undefined)
+    return <Loading />
+  if(data===null)
+    return <Error />
   return (
+
     <View style={styles.back}>
-      <HeaderLine navigation={props.navigation} title={'Details'}/>
-        <ScrollView >
-          <View style={styles.upperBox}>
-            <Image style={styles.img} source={{uri: data.image=="https://imdb-api.com/images/original/nopicture.jpg"?props.route.params.Title.image:data.image}}/>
-            <View style={{flex:1, justifyContent:'center'}}>
-              <Text style={styles.title}>{data.fullTitle}</Text>
-              {data.imDbRating!=null
-                ?
-                (<>
+    <HeaderLine navigation={props.navigation} title={'Details'}/>
+      <ScrollView >
+        <View style={styles.upperBox}>
+          <Image style={styles.img} source={{uri: data.image=="https://imdb-api.com/images/original/nopicture.jpg"?props.route.params.Title.image:data.image}}/>
+          <View style={{flex:1, justifyContent:'center'}}>
+            <Text style={styles.title}>{data.fullTitle}</Text>
+            {data.imDbRating!=null
+              ?
+                <>
                   <Text style={styles.rating}>{data.ratingStars}</Text>
                   <Text style={styles.ratingStr}>({data.imDbRating}/10, {data.imDbRatingVotes} votes)</Text>
-                 </>
-                )
-                :
-                (<></>)
+                </>
 
-
+              :
+              <></>
             }
-            </View>
           </View>
-          <Text style={styles.plot}>{data.plot}</Text>
-          <Text style={styles.subTitle}>Cast:</Text>
+        </View>
+        <Text style={styles.plot}>{data.plot}</Text>
+        <Text style={styles.subTitle}>Cast:</Text>
+        <FlatList
+          data={data.actorList}
+          horizontal={true}
+          renderItem={
+            ({ item }) =>
+              (<ActorBox data={item} onPress={props.navigation.push}/>)}
+          keyExtractor={item => item.id}
+          />
+        {data.tvEpisodeInfo?
+          <></>
+          :
+          <>
+          <Text style={styles.subTitle}>See also:</Text>
           <FlatList
-            data={data.actorList}
+            data={data.similars}
             horizontal={true}
             renderItem={
               ({ item }) =>
-                (<ActorBox data={item} />)}
+                (<SmallResult data={item} onPress={props.navigation.push}/>)}
             keyExtractor={item => item.id}
             />
+            </>
 
-            <Text style={styles.subTitle}>See also:</Text>
-            <FlatList
-              data={data.similars}
-              horizontal={true}
-              renderItem={
-                ({ item }) =>
-                  (<SmallResult data={item} />)}
-              keyExtractor={item => item.id}
-              />
+        }
 
-
+        {
+          data.tvSeriesInfo!=null
+          ?
+          <>
+          <Text style={styles.subTitle}>Seasons:</Text>
+          <FlatList
+            data={data.tvSeriesInfo.seasons}
+            horizontal={true}
+            renderItem={
+              ({ item }) =>
+                (<SeasonsBox title={data} data={item} onPress={props.navigation.navigate} />)}
+            keyExtractor={item => item}
+            />
+            </>
+            :
+            <></>
+          }
         </ScrollView>
-    </View>
+      </View>
   )
 }
 

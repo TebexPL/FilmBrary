@@ -5,46 +5,52 @@ import {View,Text, FlatList, StyleSheet, ScrollView} from 'react-native';
 import SearchBox from './Components/SearchBox'
 import SmallResult from './Components/SmallResult';
 import HeaderLine from './Components/HeaderLine';
-import ApiKey from './ApiKey';
+import Loading from './Components/Loading';
+import Error from './Components/Error';
+
+import {FetchData} from './Common/Common.js';
 
 
 const SearchScreen = (props) =>{
-  const [results, setResults] = useState([]);
+  const [data, setData] = useState(undefined);
+  useEffect(()=>{fetchData()}, []);
 
-  useEffect(() => {
-    fetchData()
-  }, []);
 
-  const fetchData = async () => {
-      try{
-        const temp=[];
-        const resultMovies = await (await fetch('https://imdb-api.com/en/API/MostPopularMovies/'+ApiKey)).json();
-        const resultTVs = await (await fetch('https://imdb-api.com/en/API/MostPopularTVs/'+ApiKey)).json();
-        const resultComing = await (await fetch('https://imdb-api.com/en/API/ComingSoon/'+ApiKey)).json();
-        const resultTheaters = await (await fetch('https://imdb-api.com/en/API/InTheaters/'+ApiKey)).json();
-        const resultBoxOffice = await (await fetch('https://imdb-api.com/en/API/BoxOffice/'+ApiKey)).json();
-        temp.push({title: "Popular Movies", data: resultMovies.items});
-        temp.push({title: "Popular TV shows", data: resultTVs.items});
-        temp.push({title: "Coming soon", data: resultComing.items});
-        temp.push({title: "In theaters", data: resultTheaters.items});
-        temp.push({title: "Box Office", data: resultBoxOffice.items});
-        setResults(temp);
-      }
-      catch(error){
-        console.error(error);
-      }
+  const fetchData = async () =>{
+    const temp=[];
+    const resultMovies = await FetchData('MostPopularMovies');
+    const resultTVs = await FetchData('MostPopularTVs');
+    const resultComing = await FetchData('ComingSoon');
+    const resultTheaters = await FetchData('InTheaters');
+    const resultBoxOffice = await FetchData('BoxOffice');
+    if( resultMovies===null||
+        resultTVs===null||
+        resultComing===null||
+        resultTheaters===null||
+        resultBoxOffice===null){
+          setData(null);
+          return;
+    }
+
+    temp.push({title: "Popular Movies", data: resultMovies.items});
+    temp.push({title: "Popular TV shows", data: resultTVs.items});
+    temp.push({title: "Coming soon", data: resultComing.items});
+    temp.push({title: "In theaters", data: resultTheaters.items});
+    temp.push({title: "Box Office", data: resultBoxOffice.items});
+    setData(temp);
   }
 
-  const gotoDetails = (title) => {
-    props.navigation.navigate('DetailsScreen', {Title: title});
-  }
+  if(data===undefined)
+    return <Loading />
+  if(data===null)
+    return <Error />
 
   return (
     <>
     <HeaderLine navigation={props.navigation} title={'Home'}/>
     <FlatList
       style={styles.back}
-      data={results}
+      data={data}
       renderItem={
         ({ item }) =>
           (<>
@@ -55,7 +61,7 @@ const SearchScreen = (props) =>{
               horizontal={true}
               renderItem={
                 ({ item }) =>
-                  (<SmallResult data={item} onPress={gotoDetails}/>)}
+                  (<SmallResult data={item} onPress={props.navigation.navigate}/>)}
               keyExtractor={item => item.id}
               />
               </>

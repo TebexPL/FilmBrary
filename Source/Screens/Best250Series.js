@@ -4,41 +4,34 @@ import {FlatList, StyleSheet} from 'react-native';
 
 import SingleResult from './Components/SingleResult';
 import HeaderLine from './Components/HeaderLine';
-import ApiKey from './ApiKey';
+import Loading from './Components/Loading';
+import Error from './Components/Error';
+import {FetchData} from './Common/Common.js';
 
 
 const Best250Series = (props) =>{
-  const [results, setResults] = useState([]);
-  useEffect(() => {
-    fetchData()
-  }, []);
+  const [data, setData] = useState(undefined);
+  useEffect(()=>{fetchData()}, []);
 
-  const fetchData = async () => {
-      try{
-        const result = await (await fetch('https://imdb-api.com/en/API/Top250TVs/'+ApiKey)).json();
-        setResults(result.items);
-      }
-      catch(error){
-        console.error(error);
-      }
-  }
-
-  const gotoDetails = (title) => {
-    props.navigation.navigate('DetailsScreen', {Title: title});
+  const fetchData = async () =>{
+    const result = await FetchData('Top250TVs');
+    result===null?setData(null):setData(result.items);
   }
 
 
+  if(data===undefined)
+    return <Loading />
+  if(data===null)
+    return <Loading />
   return (
     <>
       <HeaderLine navigation={props.navigation} title={'Best TV Series'}/>
       <FlatList
         style={styles.back}
-        /*ListHeaderComponent=
-          {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}*/
-        data={results}
+        data={data}
         renderItem={
           ({ item }) =>
-            (<SingleResult data={item} onPress={gotoDetails}/>)}
+            (<SingleResult data={item} onPress={props.navigation.push}/>)}
         keyExtractor={item => item.id}
       />
     </>

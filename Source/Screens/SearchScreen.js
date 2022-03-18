@@ -5,26 +5,17 @@ import {FlatList, StyleSheet} from 'react-native';
 import SearchBox from './Components/SearchBox'
 import SingleResult from './Components/SingleResult';
 import HeaderLine from './Components/HeaderLine';
-import ApiKey from './ApiKey';
+import {FetchData} from './Common/Common.js';
 
 
 const SearchScreen = (props) =>{
-  const [results, setResults] = useState([]);
+  const [data, setData] = useState([]);
 
-  const fetchResults = async (event) => {
-    const queryString = event.nativeEvent.text;
-    try{
-      const result = await (await fetch('https://imdb-api.com/en/API/SearchTitle/'+ApiKey+'/'+queryString)).json();
-      setResults(result.results);
-    }
-    catch(error){
-      console.error(error);
-    }
+  const fetchData = async () =>{
+    const result = await FetchData('SearchTitle', '/'+event.nativeEvent.text);
+    result===null?setData(null):setData(result.results);
   }
 
-  const gotoDetails = (title) => {
-    props.navigation.navigate('DetailsScreen', {Title: title});
-  }
 
   return (
     <>
@@ -32,11 +23,11 @@ const SearchScreen = (props) =>{
     <FlatList
       style={styles.back}
       ListHeaderComponent=
-        {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}
-      data={results}
+        {<SearchBox placeholder="Type here..." onSubmit={fetchData}/>}
+      data={data}
       renderItem={
         ({ item }) =>
-          (<SingleResult data={item} onPress={gotoDetails}/>)}
+          (<SingleResult data={item} onPress={props.navigation.navigate}/>)}
       keyExtractor={item => item.id}
     />
     </>

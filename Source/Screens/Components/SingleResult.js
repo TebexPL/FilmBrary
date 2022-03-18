@@ -5,7 +5,7 @@ import {TouchableOpacity, Text, Image, StyleSheet, View} from 'react-native';
 const SingleResult = (props) =>{
 
   return (
-    <TouchableOpacity style={styles.back} onPress={() => props.onPress(props.data)}>
+    <TouchableOpacity style={styles.back} onPress={() => props.onPress('DetailsScreen', {Title: props.data})}>
       <Image style={styles.img} source={{uri: props.data.image}} />
       <Text style={styles.text}>{props.data.title}</Text>
     </TouchableOpacity>

@@ -1,45 +1,40 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import {FlatList, View, StyleSheet} from 'react-native';
 
 import SingleResult from './Components/SingleResult';
 import HeaderLine from './Components/HeaderLine';
-import ApiKey from './ApiKey';
-
+import Loading from './Components/Loading';
+import Error from './Components/Error';
+import {FetchData} from './Common/Common.js';
 
 const Best250Movies = (props) =>{
-  const [results, setResults] = useState([]);
-  useEffect(() => {
-    fetchData()
-  }, []);
+  const [data, setData] = useState(undefined);
+  useEffect(()=>{fetchData()}, []);
 
-  const fetchData = async () => {
-      try{
-        const result = await (await fetch('https://imdb-api.com/en/API/Top250Movies/'+ApiKey)).json();
-        setResults(result.items);
-      }
-      catch(error){
-        console.error(error);
-      }
+  const fetchData = async () =>{
+    const result = await FetchData('Top250Movies');
+    result===null?setData(null):setData(result.items);
   }
 
-  const gotoDetails = (title) => {
-    props.navigation.navigate('DetailsScreen', {Title: title});
-  }
+  if(data===undefined)
+    return <Loading />
+  else if(data===null)
+    return <Error />
 
   return (
     <>
       <HeaderLine navigation={props.navigation} title={'Best Movies'}/>
-      <FlatList
-        style={styles.back}
-        /*ListHeaderComponent=
-          {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}*/
-        data={results}
-        renderItem={
-          ({ item }) =>
-            (<SingleResult data={item} onPress={gotoDetails}/>)}
-        keyExtractor={item => item.id}
-      />
+      <View style={styles.back}>
+        <FlatList
+          style={styles.back}
+          data={data}
+          renderItem={
+            ({ item }) =>
+              (<SingleResult data={item} onPress={props.navigation.push}/>)}
+          keyExtractor={item => item.id}
+        />
+      </View>
     </>
   )
 }

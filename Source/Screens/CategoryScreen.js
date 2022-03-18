@@ -4,41 +4,34 @@ import {FlatList, StyleSheet, View} from 'react-native';
 
 import SingleResult from './Components/SingleResult';
 import HeaderLine from './Components/HeaderLine';
-import ApiKey from './ApiKey';
+import Loading from './Components/Loading';
+import Error from './Components/Error';
+import {FetchData} from './Common/Common.js';
 
 
 const CategoryScreen = (props) =>{
-  const [results, setResults] = useState([]);
-  useEffect(() => {
-    fetchData()
-  }, []);
+  const [data, setData] = useState(undefined);
+  useEffect(()=>{fetchData()}, []);
 
-  const fetchData = async () => {
-    const category = props.route.params.Category;
-      try{
-        const result = await (await fetch('https://imdb-api.com/en/API/AdvancedSearch/'+ApiKey+'?genres='+category.queryStr)).json();
-        setResults(result.results);
-      }
-      catch(error){
-        console.error(error);
-      }
+  const fetchData = async () =>{
+    const result = await FetchData('AdvancedSearch', '?genres='+props.route.params.Category.queryStr);
+    result===null?setData(null):setData(result.results);
   }
 
-  const gotoDetails = (title) => {
-    props.navigation.navigate('DetailsScreen', {Title: title});
-  }
 
+  if(data===undefined)
+    return <Loading />
+  if(data===null)
+      return <Error />
   return (
     <View style={styles.container}>
       <HeaderLine navigation={props.navigation} title={props.route.params.Category.name}/>
       <FlatList
         style={styles.back}
-        /*ListHeaderComponent=
-          {<SearchBox placeholder="Type here..." onSubmit={fetchResults}/>}*/
-        data={results}
+        data={data}
         renderItem={
           ({ item }) =>
-            (<SingleResult data={item} onPress={gotoDetails}/>)}
+            (<SingleResult data={item} onPress={props.navigation.push}/>)}
         keyExtractor={item => item.id}
       />
     </View>

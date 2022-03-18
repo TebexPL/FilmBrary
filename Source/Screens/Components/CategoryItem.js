@@ -5,7 +5,7 @@ import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 const CategoryItem = (props) =>{
 
   return(
-    <TouchableOpacity onPress={() => props.onPress(props.data)}>
+    <TouchableOpacity onPress={() => props.onPress('CategoryScreen', {Category: props.data})}>
       <Text style={styles.text}>{props.data.name}</Text>
       <View style={styles.line}></View>
     </TouchableOpacity>
