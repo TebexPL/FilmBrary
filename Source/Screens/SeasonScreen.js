@@ -15,7 +15,7 @@ const SeasonScreen = (props) =>{
   useEffect(() => {fetchData()}, []);
 
   const fetchData = async () =>{
-    const result = await FetchData('SeasonEpisodes', '/'+props.route.params.Title+'/'+props.route.params.Season);
+    const result = await FetchData('SeasonEpisodes', '/'+props.route.params.Title.id+'/'+props.route.params.Season);
     result===null?setData(null):setData(result);
   }
 

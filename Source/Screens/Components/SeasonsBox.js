@@ -5,7 +5,7 @@ import {TouchableOpacity, Text, Image, StyleSheet, View} from 'react-native';
 const SeasonsBox = (props) =>{
 
   return (
-    <TouchableOpacity style={styles.back} onPress={() => props.onPress('SeasonScreen', {Title: props.title, Season: props.data}, )}>
+    <TouchableOpacity style={styles.back} onPress={() => props.onPress('SeasonScreen', {Title: props.title, Season: props.data})}>
       <Text style={styles.text}>{props.data}</Text>
     </TouchableOpacity>
   )

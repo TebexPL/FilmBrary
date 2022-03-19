@@ -5,7 +5,7 @@ import {TouchableOpacity, Text, Image, StyleSheet, View} from 'react-native';
 const EpisodeBox = (props) =>{
 
   return (
-    <TouchableOpacity style={styles.back} onPress={() => props.onPress(props.data)}>
+    <TouchableOpacity style={styles.back} onPress={() => props.onPress('DetailsScreen', {Title: props.data})}>
       <Image style={styles.img} source={{uri: props.data.image}} />
       <View style={styles.innerContainer}>
           <Text style={styles.text}>Episode {props.data.episodeNumber}</Text>

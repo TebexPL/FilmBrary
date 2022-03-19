@@ -9,8 +9,8 @@ const FetchData = async (type, query) => {
       fullQuery+=query;
     try{
       const result = await (await fetch(fullQuery)).json();
-
-      if(result.errorMessage==="")
+      console.log(result.errorMessage);
+      if(result.errorMessage=="" || result.errorMessage==null)
         return result;
       return null;
     }
