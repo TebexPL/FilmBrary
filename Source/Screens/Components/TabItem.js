@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Image, StyleSheet} from 'react-native';
+import { View, Image, StyleSheet} from 'react-native';
 
 const image = {
   'Home': require('./assets/home.png'),
@@ -10,7 +10,6 @@ const image = {
 }
 
 const TabItem = (props) =>{
-
   return(
     <View style={styles.back}>
       <Image style={styles.icon} source={image[props.route.name]} tintColor={props.focused ? '#68999e' : '#d4f1f4' } />

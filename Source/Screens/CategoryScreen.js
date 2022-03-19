@@ -8,7 +8,6 @@ import Loading from './Components/Loading';
 import Error from './Components/Error';
 import {FetchData} from './Common/Common.js';
 
-
 const CategoryScreen = (props) =>{
   const [data, setData] = useState(undefined);
   useEffect(()=>{fetchData()}, []);
@@ -17,7 +16,6 @@ const CategoryScreen = (props) =>{
     const result = await FetchData('AdvancedSearch', '?genres='+props.route.params.Category.queryStr);
     result===null?setData(null):setData(result.results);
   }
-
 
   if(data===undefined)
     return <Loading />

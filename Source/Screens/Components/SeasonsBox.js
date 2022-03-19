@@ -1,9 +1,7 @@
 import React from 'react';
-import {TouchableOpacity, Text, Image, StyleSheet, View} from 'react-native';
-
+import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 const SeasonsBox = (props) =>{
-
   return (
     <TouchableOpacity style={styles.back} onPress={() => props.onPress('SeasonScreen', {Title: props.title, Season: props.data})}>
       <Text style={styles.text}>{props.data}</Text>
@@ -20,7 +18,6 @@ const styles = StyleSheet.create({
     margin: 5,
     width: 150,
     height: 200,
-
   },
   innerContainer:{
     flex:1

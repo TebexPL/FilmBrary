@@ -4,9 +4,6 @@ import {Dimensions, Image, View, TouchableOpacity, StyleSheet, Text} from 'react
 const headerHeight = Dimensions.get('window').height/10.0;
 
 const HeaderLine = (props) => {
-
-
-
     return (
         <View style={styles.arrowBox}>
             <TouchableOpacity disabled={props.navigation.canGoBack()?false:true} style={styles.button} onPress={props.navigation.goBack}>

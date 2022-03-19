@@ -1,6 +1,6 @@
 
-const ApiKey = 'k_m73z3hkh';
-//const ApiKey = 'k_si9mz95t';
+//const ApiKey = 'k_m73z3hkh';
+const ApiKey = 'k_si9mz95t';
 //const ApiKey = 'k_qargurwi';
 
 const FetchData = async (type, query) => {

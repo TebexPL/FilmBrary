@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {View, Text, Image, StyleSheet, ScrollView, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, Image, StyleSheet, ScrollView, FlatList} from 'react-native';
 
 import HeaderLine from './Components/HeaderLine';
 import ActorBox from './Components/ActorBox';
@@ -30,13 +30,11 @@ const DetailsScreen = (props) =>{
     }
   }
 
-
   if(data===undefined)
     return <Loading />
   if(data===null)
     return <Error setData={setData} fetchData={fetchData}/>
   return (
-
     <View style={styles.back}>
     <HeaderLine navigation={props.navigation} title={'Details'}/>
       <ScrollView >
@@ -50,7 +48,6 @@ const DetailsScreen = (props) =>{
                   <Text style={styles.rating}>{data.ratingStars}</Text>
                   <Text style={styles.ratingStr}>({data.imDbRating}/10, {data.imDbRatingVotes} votes)</Text>
                 </>
-
               :
               <></>
             }
@@ -80,9 +77,7 @@ const DetailsScreen = (props) =>{
             keyExtractor={item => item.id}
             />
             </>
-
         }
-
         {
           data.tvSeriesInfo!=null
           ?

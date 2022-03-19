@@ -1,7 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text, Image, StyleSheet, View} from 'react-native';
 
-
 const EpisodeBox = (props) =>{
 
   return (
@@ -11,7 +10,6 @@ const EpisodeBox = (props) =>{
           <Text style={styles.text}>Episode {props.data.episodeNumber}</Text>
           <Text style={styles.text}>{props.data.title}</Text>
       </View>
-
     </TouchableOpacity>
   )
 }

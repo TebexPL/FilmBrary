@@ -1,15 +1,13 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {View,Text, FlatList, StyleSheet, ScrollView} from 'react-native';
+import {View,Text, FlatList, StyleSheet} from 'react-native';
 
-import SearchBox from './Components/SearchBox'
 import SmallResult from './Components/SmallResult';
 import HeaderLine from './Components/HeaderLine';
 import Loading from './Components/Loading';
 import Error from './Components/Error';
 
 import {FetchData} from './Common/Common.js';
-
 
 const SearchScreen = (props) =>{
   const [data, setData] = useState(undefined);
@@ -74,7 +72,6 @@ const SearchScreen = (props) =>{
       />
       <View style={[{paddingBottom: 50}, styles.back]}></View>
     </>
-
   )
 }
 

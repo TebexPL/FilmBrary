@@ -1,9 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, Image, StyleSheet, Text} from 'react-native';
 
-
 const SmallResult = (props) =>{
-
   return (
     <TouchableOpacity style={styles.back} onPress={() => props.onPress('DetailsScreen', {Title: props.data})}>
       <Image style={styles.img} source={{uri: props.data.image}} />

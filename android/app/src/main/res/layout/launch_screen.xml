@@ -10,7 +10,7 @@
         android:adjustViewBounds="false"
         android:background="#262625"
         android:cropToPadding="false"
-        android:scaleType="fitCenter"
+        android:scaleType="center"
         android:src="@mipmap/ic_launcher_foreground"
         app:srcCompat="@drawable/splash" />
 </RelativeLayout>

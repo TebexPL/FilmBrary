@@ -1,13 +1,12 @@
 import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 
+const book = require('./assets/loading2.gif');
 
 const Loading = () =>{
-
   return (
     <View style={styles.back}>
-      <Image  source={{uri: 'https://readslist.com/readslist/loading.gif'}} style={styles.image} />
-
+      <Image  source={book} style={styles.image} />
     </View>
   )
 }

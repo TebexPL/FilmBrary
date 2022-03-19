@@ -2,7 +2,6 @@ import React from 'react';
 import {useState} from 'react';
 import {TextInput, View, StyleSheet, Image} from 'react-native';
 
-
 const SearchBox = (props) =>{
   const [searchString, setSearchString] = useState('');
 

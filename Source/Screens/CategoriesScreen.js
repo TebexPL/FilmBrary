@@ -34,7 +34,6 @@ const categories =[
 ]
 
 const CategoriesScreen = (props) =>{
-
   return (
     <View style={styles.back}>
       <HeaderLine navigation={props.navigation} title={'Categories'}/>
@@ -47,7 +46,6 @@ const CategoriesScreen = (props) =>{
         keyExtractor={item => item.queryStr}
       />
     </View>
-
   )
 }
 
@@ -60,7 +58,6 @@ const styles = StyleSheet.create({
     backgroundColor : '#3e3b39',
     color: '#d4f1f4',
     margin: 25,
-
   }
 });
 

@@ -1,9 +1,7 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
-
+import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 const CategoryItem = (props) =>{
-
   return(
     <TouchableOpacity style={styles.box} onPress={() => props.onPress('CategoryScreen', {Category: props.data})}>
       <Text style={styles.text}>{props.data.name}</Text>

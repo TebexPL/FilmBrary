@@ -8,7 +8,6 @@ import Loading from './Components/Loading';
 import Error from './Components/Error';
 import {FetchData} from './Common/Common.js';
 
-
 const Best250Series = (props) =>{
   const [data, setData] = useState(undefined);
   useEffect(()=>{fetchData()}, []);
@@ -17,7 +16,6 @@ const Best250Series = (props) =>{
     const result = await FetchData('Top250TVs');
     result===null?setData(null):setData(result.items);
   }
-
 
   if(data===undefined)
     return <Loading />
