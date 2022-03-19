@@ -1,7 +1,7 @@
 
-//const ApiKey = 'k_m73z3hkh';
+const ApiKey = 'k_m73z3hkh';
 //const ApiKey = 'k_si9mz95t';
-const ApiKey = 'k_qargurwi';
+//const ApiKey = 'k_qargurwi';
 
 const FetchData = async (type, query) => {
     let fullQuery='https://imdb-api.com/en/API/'+type+'/'+ApiKey;
@@ -9,7 +9,6 @@ const FetchData = async (type, query) => {
       fullQuery+=query;
     try{
       const result = await (await fetch(fullQuery)).json();
-      console.log(result.errorMessage);
       if(result.errorMessage=="" || result.errorMessage==null)
         return result;
       return null;

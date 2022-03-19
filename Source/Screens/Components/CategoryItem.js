@@ -5,9 +5,8 @@ import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 const CategoryItem = (props) =>{
 
   return(
-    <TouchableOpacity onPress={() => props.onPress('CategoryScreen', {Category: props.data})}>
+    <TouchableOpacity style={styles.box} onPress={() => props.onPress('CategoryScreen', {Category: props.data})}>
       <Text style={styles.text}>{props.data.name}</Text>
-      <View style={styles.line}></View>
     </TouchableOpacity>
     )
 }
@@ -16,9 +15,16 @@ const styles = StyleSheet.create({
   text : {
     color: '#d4f1f4',
     fontSize: 18,
-    padding: 8,
     fontWeight: 'bold',
-    margin: 2,
+  },
+  box:{
+    flex: 1,
+    marginRight: 10,
+    marginLeft: 10,
+    borderBottomColor: 'black',
+    borderBottomWidth: 2,
+    padding:10,
+    paddingBottom: 10
   },
   line : {
     marginRight: "6%",

@@ -2,7 +2,7 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import SplashScreen from 'react-native-splash-screen'
 const WelcomeScreen = (props) =>{
   const [firstTime, setFirstTime] = useState(undefined);
 
@@ -14,13 +14,7 @@ const WelcomeScreen = (props) =>{
     try{
       const value = await AsyncStorage.getItem('@FirstTime');
       if (value === "false") {
-
-
-        //Uncomment this
-        //props.navigation.replace('MainScreen', {});
-
-        //Remove this
-        setFirstTime(true);
+        props.navigation.replace('MainScreen', {});
       }
       else
           setFirstTime(true);
@@ -28,6 +22,10 @@ const WelcomeScreen = (props) =>{
     catch(error){
       setFirstTime(true);
     }
+    finally{
+      SplashScreen.hide();
+    }
+
   }
 
   const confirm = async () => {

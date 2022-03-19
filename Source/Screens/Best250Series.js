@@ -22,7 +22,7 @@ const Best250Series = (props) =>{
   if(data===undefined)
     return <Loading />
   if(data===null)
-    return <Loading />
+    return <Error />
   return (
     <>
       <HeaderLine navigation={props.navigation} title={'Best TV Series'}/>

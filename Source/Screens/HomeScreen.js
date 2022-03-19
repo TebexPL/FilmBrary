@@ -14,7 +14,7 @@ import {FetchData} from './Common/Common.js';
 const SearchScreen = (props) =>{
   const [data, setData] = useState(undefined);
   useEffect(()=>{fetchData()}, []);
-
+  const _ = require('lodash');
 
   const fetchData = async () =>{
     const temp=[];
@@ -31,7 +31,11 @@ const SearchScreen = (props) =>{
           setData(null);
           return;
     }
-
+    resultMovies.items = _.shuffle(resultMovies.items);
+    resultTVs.items = _.shuffle(resultTVs.items);
+    resultComing.items = _.shuffle(resultComing.items);
+    resultTheaters.items = _.shuffle(resultTheaters.items);
+    resultBoxOffice.items = _.shuffle(resultBoxOffice.items);
     temp.push({title: "Popular Movies", data: resultMovies.items});
     temp.push({title: "Popular TV shows", data: resultTVs.items});
     temp.push({title: "Coming soon", data: resultComing.items});

@@ -11,7 +11,7 @@ import {FetchData} from './Common/Common.js';
 const SearchScreen = (props) =>{
   const [data, setData] = useState([]);
 
-  const fetchData = async () =>{
+  const fetchData = async (event) =>{
     const result = await FetchData('SearchTitle', '/'+event.nativeEvent.text);
     result===null?setData(null):setData(result.results);
   }
