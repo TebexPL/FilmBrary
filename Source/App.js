@@ -2,6 +2,7 @@ import React from 'react';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {setCustomText} from 'react-native-global-props';
 
 import MainScreen from './Screens/MainScreen';
 import ActorScreen from './Screens/ActorScreen';
@@ -9,6 +10,14 @@ import SeasonScreen from './Screens/SeasonScreen';
 import DetailsScreen from './Screens/DetailsScreen';
 import WelcomeScreen  from './Screens/WelcomeScreen';
 import CategoryScreen  from './Screens/CategoryScreen';
+
+const globalTextProps = {
+  style: {
+    fontFamily: 'Montserrat-Regular'
+  }
+};
+
+setCustomText(globalTextProps);
 
 const Stack = createNativeStackNavigator();
 
