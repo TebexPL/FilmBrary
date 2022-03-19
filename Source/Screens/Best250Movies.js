@@ -20,7 +20,7 @@ const Best250Movies = (props) =>{
   if(data===undefined)
     return <Loading />
   else if(data===null)
-    return <Error />
+    return <Error setData={setData} fetchData={fetchData}/>
 
   return (
     <>

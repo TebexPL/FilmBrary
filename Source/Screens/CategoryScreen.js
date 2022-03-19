@@ -22,7 +22,7 @@ const CategoryScreen = (props) =>{
   if(data===undefined)
     return <Loading />
   if(data===null)
-      return <Error />
+      return <Error setData={setData} fetchData={fetchData}/>
   return (
     <View style={styles.container}>
       <HeaderLine navigation={props.navigation} title={props.route.params.Category.name}/>

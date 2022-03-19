@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         flex:3,
         textAlign: 'center',
         color: '#d4f1f4',
-        fontSize: 25
+        fontSize: 22
       },
       arrow :{
         height: 20,
