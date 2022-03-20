@@ -18,12 +18,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 5,
   },
   img :{
-    height: 135,
-    width: 90,
+    height: 200,
+    width: 150,
     margin: 10
   },
   text :{
+    flex:1,
     color : '#d4f1f4',
+    textAlign: 'center',
     fontSize: 20,
     margin : 5
   }
