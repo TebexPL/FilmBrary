@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     tintColor: '#d4f1f4'
   },
   text:{
+    flex:1,
     padding: 5,
     margin: 5,
     color: '#d4f1f4'
